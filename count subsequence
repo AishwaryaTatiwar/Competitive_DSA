@@ -1,0 +1,18 @@
+// int cnt=0;
+const int MOD = 1e9 + 7;
+int solve(vector<int>& arr, int k, int i, int sum) {
+    if (i == arr.size()) {
+        return (sum == k) ? 1 : 0;
+    }
+    // Include the current element
+    int include = solve(arr, k, i + 1, sum + arr[i]);
+    // Exclude the current element
+    int exclude = solve(arr, k, i + 1, sum);
+    return (include + exclude) % MOD;
+}
+int findWays(vector<int>& arr, int k)
+{
+	// Write your code here.
+    return solve(arr, k, 0, 0);
+}
+
